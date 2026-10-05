@@ -1,5 +1,6 @@
 import { useMemo, useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
+import { createPortal } from "react-dom";
 import { AlertTriangle, ArrowRight, FileText, Library, Plus, Search, X } from "lucide-react";
 import { useOkf } from "@/lib/okf/store";
 import type { KnowledgeItem, SourceDocument, ValidationStatus } from "@/lib/okf/types";
@@ -200,8 +201,8 @@ function Field({ label, children }: { label: string; children: ReactNode }) {
 }
 
 function Drawer({ title, onClose, children, wide }: { title: string; onClose: () => void; children: ReactNode; wide?: boolean }) {
-  return (
-    <div className="fixed inset-0 z-40 flex justify-end" role="dialog" aria-modal>
+  return createPortal(
+    <div className="fixed inset-0 z-40 flex justify-end font-sans text-foreground" role="dialog" aria-modal>
       <div className="absolute inset-0 bg-foreground/20 animate-fade-up" onClick={onClose} />
       <aside className={`relative flex h-full w-full flex-col bg-card shadow-lift animate-slide-in ${wide ? "max-w-2xl" : "max-w-md"}`}>
         <div className="flex items-center justify-between border-b px-6 py-4">
@@ -210,6 +211,7 @@ function Drawer({ title, onClose, children, wide }: { title: string; onClose: ()
         </div>
         <div className="flex-1 space-y-5 overflow-y-auto px-6 py-5">{children}</div>
       </aside>
-    </div>
+    </div>,
+    document.body,
   );
 }
