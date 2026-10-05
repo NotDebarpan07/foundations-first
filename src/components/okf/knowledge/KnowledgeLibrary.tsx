@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { AlertTriangle, ArrowRight, FileText, Library, Plus, Search, X } from "lucide-react";
 import { useOkf } from "@/lib/okf/store";
@@ -190,7 +190,7 @@ export function KnowledgeLibrary() {
   );
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div>
       <p className="text-xs uppercase tracking-widest text-muted-foreground">{label}</p>
@@ -199,7 +199,7 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
   );
 }
 
-function Drawer({ title, onClose, children, wide }: { title: string; onClose: () => void; children: React.ReactNode; wide?: boolean }) {
+function Drawer({ title, onClose, children, wide }: { title: string; onClose: () => void; children: ReactNode; wide?: boolean }) {
   return (
     <div className="fixed inset-0 z-40 flex justify-end" role="dialog" aria-modal>
       <div className="absolute inset-0 bg-foreground/20 animate-fade-up" onClick={onClose} />
