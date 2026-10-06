@@ -174,7 +174,7 @@ export function KnowledgeLibrary() {
           <Field label="Validation"><StatusBadge status={open.status} />{open.issue && <p className="mt-2 text-sm text-muted-foreground">{open.issue}</p>}</Field>
           {open.sourcePage && <Field label="Source page">Page {open.sourcePage}</Field>}
           <button
-            onClick={() => setMdDoc(docById[open.documentId])}
+            onClick={() => setMdDoc(docById[open.documentId] ?? null)}
             className="lift mt-2 inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground"
           >
             <FileText className="h-4 w-4" /> View Markdown
@@ -191,7 +191,7 @@ export function KnowledgeLibrary() {
   );
 }
 
-function Field({ label, children }: { label: string; children: ReactNode }) {
+export function Field({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div>
       <p className="text-xs uppercase tracking-widest text-muted-foreground">{label}</p>
@@ -200,7 +200,7 @@ function Field({ label, children }: { label: string; children: ReactNode }) {
   );
 }
 
-function Drawer({ title, onClose, children, wide }: { title: string; onClose: () => void; children: ReactNode; wide?: boolean }) {
+export function Drawer({ title, onClose, children, wide }: { title: string; onClose: () => void; children: ReactNode; wide?: boolean }) {
   return createPortal(
     <div className="fixed inset-0 z-40 flex justify-end font-sans text-foreground" role="dialog" aria-modal>
       <div className="absolute inset-0 bg-foreground/20 animate-fade-up" onClick={onClose} />

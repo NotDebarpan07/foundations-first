@@ -75,7 +75,7 @@ function extractItems(md: string, documentId: string, now: string): KnowledgeIte
       id: uid(),
       documentId,
       title: current.title,
-      type: current.level === 1 ? "Topic" : /\d/.test(description.slice(0, 60)) ? "Metric" : TYPES[1 + (idx % 4)],
+      type: current.level === 1 ? "Topic" : /\d/.test(description.slice(0, 60)) ? "Metric" : (TYPES[1 + (idx % 4)] ?? "Concept"),
       description: description || "No content found under this heading.",
       status: missing ? "review" : "valid",
       issue: missing ? "Heading has little or no supporting content." : undefined,
@@ -87,7 +87,7 @@ function extractItems(md: string, documentId: string, now: string): KnowledgeIte
     const m = line.match(/^(#{1,3})\s+(.*)/);
     if (m) {
       flush();
-      current = { title: m[2].trim(), level: m[1].length, body: [] };
+      current = { title: (m[2] ?? "").trim(), level: (m[1] ?? "#").length, body: [] };
     } else if (current) current.body.push(line);
     else if (line.trim()) current = { title: "Introduction", level: 2, body: [line] };
   }
