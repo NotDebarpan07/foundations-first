@@ -191,7 +191,7 @@ export function KnowledgeLibrary() {
   );
 }
 
-function Field({ label, children }: { label: string; children: ReactNode }) {
+export function Field({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div>
       <p className="text-xs uppercase tracking-widest text-muted-foreground">{label}</p>
@@ -200,7 +200,7 @@ function Field({ label, children }: { label: string; children: ReactNode }) {
   );
 }
 
-function Drawer({ title, onClose, children, wide }: { title: string; onClose: () => void; children: ReactNode; wide?: boolean }) {
+export function Drawer({ title, onClose, children, wide }: { title: string; onClose: () => void; children: ReactNode; wide?: boolean }) {
   return createPortal(
     <div className="fixed inset-0 z-40 flex justify-end font-sans text-foreground" role="dialog" aria-modal>
       <div className="absolute inset-0 bg-foreground/20 animate-fade-up" onClick={onClose} />
