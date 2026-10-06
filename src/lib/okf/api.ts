@@ -75,7 +75,7 @@ function extractItems(md: string, documentId: string, now: string): KnowledgeIte
       id: uid(),
       documentId,
       title: current.title,
-      type: current.level === 1 ? "Topic" : /\d/.test(description.slice(0, 60)) ? "Metric" : TYPES[1 + (idx % 4)],
+      type: current.level === 1 ? "Topic" : /\d/.test(description.slice(0, 60)) ? "Metric" : (TYPES[1 + (idx % 4)] ?? "Concept"),
       description: description || "No content found under this heading.",
       status: missing ? "review" : "valid",
       issue: missing ? "Heading has little or no supporting content." : undefined,
